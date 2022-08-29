@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Activity2.Models.ProductModel>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@*NOTES adapt to screensize / get images
+    bootstraps is adaptative to screen sizes
+     container: adapts size to the screen size
+     d-flex flex-wrap: is a flexbox container so that it adapts the number of cards by line depending on size
+
+    To get example images from internet:
+    - https://pravatar.cc/
+    - https://loremflickr.com/
+
+*@
+<div class="container d-flex flex-wrap">
+    @foreach (var item in Model)
+    {
+        var itemName = item.Name;
+        //ckeck just in case a name has only 1 word
+        var firstWord = itemName.IndexOf(" ") > -1 ? itemName.Substring(0, itemName.IndexOf(" ")) : itemName;
+
+    <div class="card" style="width: 18rem;">
+        @*NOTES pravatar use / loremflickr use
+        pravatar
+         we add @item.Id to the url so that it picks always the same image
+         150 is image size
+        loremflickr
+         https://loremflickr.com/g/150/240/paris => high/wide/keyword
+         lock: to avoid different images every time the page refresh, we use lock
+
+        *@
+
+        @*<img src="https://i.pravatar.cc/150?u=@item.Id" class="card-img-top" alt="Card image cap">*@
+        <img src="https://loremflickr.com/g/150/150/@firstWord?lock=@item.Id" class="card-img-top" alt="@item.Name">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            @*NOTES usamos DisplayFor para mostrarlo como está configurado en el modelo su DataType Currency*@
+            <p class="card-text">@Html.DisplayFor(m => item.Price)</p>
+            <p class="card-text">@item.Description</p>
+            @*NOTES we can use methods urls as <a href="/products/ShowDetails/@item.Id"*@
+            <a href="/products/ShowDetails/@item.Id" class="btn btn-primary">Show details</a>
+            <a href="/products/Edit/@item.Id" class="btn btn-warning">Edit</a>
+            <a href="/products/Delete/@item.Id" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    }
+</div>
+
+
+@*  this is our list of products, we changed by a grid above
+
+        <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@

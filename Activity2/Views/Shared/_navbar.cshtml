@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+    NOTES extract html section from _Layout / partial view _ / theme changes
+
+    we create this view and copy from _Layout the navbar section <nav> here
+
+    _ --> we use underscore that indicates it is a partial view
+
+    navbar <nav> still is light theme, so to change it, we change its classes
+
+*@
+
+@{
+}
+@*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">*@
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+    <div class="container">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Activity2</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>*@
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>
+                <li class="nav-item">
+                    @*<a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>*@
+                    <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                </li>
+                <li class="nav-item">
+                    @*<a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="SearchForm">Search</a>*@
+                    <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="SearchForm">Search</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

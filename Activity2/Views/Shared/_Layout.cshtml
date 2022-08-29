@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Activity2</title>
+    @*NOTES Bootstrap customization / change theme / personalized css
+        Here we tell where bootstrap template is
+        we rename the original version to bootstrap_original.min.css (that automatically goes out of the bootstrap.css)
+        now we look for free bootstrap themes at Bootswatch https://bootswatch.com/
+        I want Superhero theme, to get it, go to Menu/Superhero(name changes depending on theme)/select bootstrap.min.css to download, then copy it and paste in folder ~/lib/bootstrap/dist/css
+        To refresh css click SHIFT+F5
+
+        Load order: it is important that ~/css/site.css is after ~/lib/bootstrap/dist/css/bootstrap.min.css since this is the load order, and the last one rules over the other one.
+
+        Other css options:
+        - https://get.foundation/
+        - https://materializecss.com/
+        - https://purecss.io/
+
+        To see bootstrap component examples, as a card, search in https://getbootstrap.com/docs/5.2/components/
+
+    *@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        @*NOTES we have removed <nav> section and copied to a partial view _navbar*@
+        @Html.Partial("_navbar")
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Activity2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> @*NOTES this is for jquery, bootstrap needs it*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> @*NOTES this is for bootstrap animation effects, modal dialogs, etc*@
+    <script src="~/js/site.js" asp-append-version="true"></script> @*NOTES Javascript personalization: this is to run my own javascript personalizations at wwwroot/js/site.js*@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
